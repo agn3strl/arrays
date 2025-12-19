@@ -90,9 +90,10 @@ int delete_k(double* A, int size, int start, int k);
  * Вставка выбранных элементов массива
  * @param A указатель на массив
  * @param size размер массива
- * @param количество элементов, которые необходимо вставить
+ * @param k количество элементов, которые необходимо вставить
+ * @param elementsinsert указатель на массив с элементами для вставки
  * @return указатель на обработанный массив
  */
-double* insert_k(double* A, int size, int k); // вставка элемента
+double* insert_k(double* A, int size, int k, double* elementsinsert); // вставка элемента
 
 #endif

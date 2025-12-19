@@ -100,7 +100,7 @@ int delete_k(double* A, int size, int start, int k)
 	return n;
 }
 
-double* insert_k(double* A, int size, int k)
+double* insert_k(double* A, int size, int k, double* elementsinsert)
 {
 	int min_index = 0;
 	double min_value = A[0];
@@ -115,19 +115,16 @@ double* insert_k(double* A, int size, int k)
 	double* temp = (double*)realloc(A, new_size * sizeof(double));
 	if (temp == NULL) {
 		printf("error\n");
-		return -1;
+		return NULL;
 	}
 
 	for (int i = 0; i <= min_index; i++) {
 		temp[i] = A[i];
 	}
 
-	printf("Введите %d элементов для вставки после минимального:\n", k);
 	for (int i = 0; i < k; i++) {
-		printf("A[%d]: ", i + 1);
-		scanf("%lf", &temp[min_index + 1 + i]);
+		temp[min_index + 1 + i] = elementsinsert[i];
 	}
-	puts("\n");
 
 	for (int i = min_index + 1; i < size; i++) {
 		temp[i + k] = A[i];

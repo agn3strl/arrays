@@ -197,7 +197,7 @@ int task16(int size)
 		return -1;
 	}
 
-	delete_k(array, size, s, k);
+	int newsize = delete_k(array, size, s, k);
 	put_elements(array, size - k);
 	puts("\n");
 
@@ -206,7 +206,27 @@ int task16(int size)
 	printf("Введите количество элементов для вставки после минимального: ");
 	scanf("%d", &c);
 
-	put_elements(insert_k(array, size, c), size - k + c);
+	double* elementsinsert = (double*)malloc(c * sizeof(double));
+	if (elementsinsert == NULL) {
+		puts("error");
+		free(array);
+		return -1;
+	}
+
+	printf("Введите %d элементов для вставки после минимального:\n", c);
+	for (int i = 0; i < c; i++) {
+		printf("A[%d] = ", i + 1);
+		scanf("%lf", &elementsinsert[i]);
+	}
+	puts("\n");
+
+	// Вставляем элементы
+	double* result_array = insert_k(array, newsize, c, elementsinsert);
+	if (result_array != NULL) {
+		printf("Массив после вставки %d элементов после минимального:\n", c);
+		put_elements(result_array, newsize + c);
+		free(result_array);
+	}
 
 	return 0;
 
